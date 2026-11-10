@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getJson } from '../api/client.js';
 
-type Suggestion = { title: string; reason: string };
+type Suggestion = { _id: string; title: string; reason: string };
 
 export default function Workouts() {
   const [suggestions, setSuggestions] = useState<Suggestion[] | null>(null);
@@ -21,8 +21,8 @@ export default function Workouts() {
       {suggestions !== null && suggestions.length === 0 && <p className="alert alert-secondary">No workout suggestions available.</p>}
       {suggestions !== null && suggestions.length > 0 && (
         <div className="row">
-          {suggestions.map((suggestion, idx) => (
-            <div key={idx} className="col-md-6 col-lg-4 mb-3">
+          {suggestions.map((suggestion) => (
+            <div key={suggestion._id} className="col-md-6 col-lg-4 mb-3">
               <div className="card">
                 <div className="card-body">
                   <h3 className="h5">{suggestion.title}</h3>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getJson } from '../api/client.js';
 
-type Team = { name: string; members: string[] };
+type Team = { _id: string; name: string; members: string[] };
 
 export default function Teams() {
   const [teams, setTeams] = useState<Team[] | null>(null);
@@ -21,8 +21,8 @@ export default function Teams() {
       {teams !== null && teams.length === 0 && <p className="alert alert-secondary">No teams yet.</p>}
       {teams !== null && teams.length > 0 && (
         <div className="row">
-          {teams.map((team, idx) => (
-            <div key={idx} className="col-md-6 col-lg-4 mb-3">
+          {teams.map((team) => (
+            <div key={team._id} className="col-md-6 col-lg-4 mb-3">
               <div className="card">
                 <div className="card-body">
                   <h3 className="h5">{team.name}</h3>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getJson } from '../api/client.js';
 
-type Activity = { type: string; minutes: number; points: number };
+type Activity = { _id: string; type: string; minutes: number; points: number };
 
 export default function Activities() {
   const [activities, setActivities] = useState<Activity[] | null>(null);
@@ -21,8 +21,8 @@ export default function Activities() {
       {activities !== null && activities.length === 0 && <p className="alert alert-secondary">No activities yet.</p>}
       {activities !== null && activities.length > 0 && (
         <div className="row">
-          {activities.map((activity, idx) => (
-            <div key={idx} className="col-md-6 col-lg-4 mb-3">
+          {activities.map((activity) => (
+            <div key={activity._id} className="col-md-6 col-lg-4 mb-3">
               <div className="card">
                 <div className="card-body">
                   <h3 className="h5">{activity.type}</h3>
